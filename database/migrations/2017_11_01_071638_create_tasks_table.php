@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTitleToMessagesTable extends Migration
+class CreateTasksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,10 @@ class AddTitleToMessagesTable extends Migration
      */
     public function up()
     {
-    Schema::table('tasks', function (Blueprint $table) {
-            $table->string('title');
+        Schema::create('tasks', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('content');    // content カラム追加
+            $table->timestamps();
         });
     }
 
@@ -24,8 +26,6 @@ class AddTitleToMessagesTable extends Migration
      */
     public function down()
     {
-    Schema::table('tasks', function (Blueprint $table) {
-            $table->dropColumn('title');
-        });
+        Schema::drop('tasks');
     }
 }
